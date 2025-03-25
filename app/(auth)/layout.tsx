@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter } from "next/font/google";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
+import { ClerkProvider } from "@clerk/nextjs";
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Klikmart - Authentication",
@@ -24,10 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en">
       <ClerkProvider>
-        <body suppressHydrationWarning>{children}</body>
+        <body className={inter.className}>{children}</body>
       </ClerkProvider>
     </html>
   );
 }
+
